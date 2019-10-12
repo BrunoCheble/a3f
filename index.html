@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <style>
+        /**/
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Armata';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Armata Regular'), local('Armata-Regular'), url(https://fonts.gstatic.com/s/armata/v10/gokvH63_HV5jQ-ENkzRz.ttf) format('truetype');
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #FAFAFA;
+            font: 10pt "Armata";
+            line-height: 18pt;
+        }
+
+        * {
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        table td {
+            padding: 5pt;
+        }
+
+        table tr:nth-child(odd) {
+            background-color: #ffb37b;
+        }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            padding: 10mm;
+            margin: 10mm auto;
+            border: 1px #D3D3D3 solid;
+            border-radius: 5px;
+            background: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .logo {
+            float: left;
+            margin-top: 0;
+            color: #fff;
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .logo img {
+            height: 22mm;
+            margin-bottom: .6em;
+            display: block;
+        }
+
+        header {
+            -webkit-print-color-adjust: exact;
+            border-bottom: 6mm solid #fe6b09;
+            margin: -10mm -10mm 10mm;
+            padding: 0mm 10mm;
+            height: 30mm;
+            width: 210mm;
+        }
+
+        header>div {
+            float: right;
+            margin-top: 12mm;
+            color: #333;
+            font-size: 11pt;
+        }
+
+        h3 {
+            color: #004f72;
+            font-size: 18pt;
+            line-height: 5mm;
+        }
+
+        h2 {
+            color: #fe6b09;
+            font-size: 25pt;
+            line-height: 20mm;
+            text-align: center;
+        }
+
+        b {
+            color: #333;
+        }
+
+        small {
+            font-size: 10px;
+        }
+
+        li b {
+            color: #000;
+        }
+
+        .divider-blue {
+            margin: 3mm 0;
+            border-top: 1pt dashed #004f72;
+        }
+
+        .divider-yellow {
+            margin: 3mm 0;
+            border-bottom: 1pt dashed #fe6b09;
+        }
+
+        .left {
+            float: left;
+        }
+
+        .right {
+            float: right;
+            text-align: right
+        }
+
+        footer {
+            font-size: 9pt;
+            background: #004f72;
+            color: #fff;
+            position: absolute;
+            bottom: 0;
+            -webkit-print-color-adjust: exact;
+            margin: 10mm -10mm 0;
+            padding: 5mm 10mm 0;
+            height: 30mm;
+            width: 210mm;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+
+            html,
+            body {
+                width: 210mm;
+                height: 297mm;
+                -webkit-print-color-adjust: exact;
+            }
+
+            .btn {
+                display: none;
+            }
+
+            .too .page {
+                margin: 0;
+                border: initial;
+                border-radius: initial;
+                width: initial;
+                min-height: initial;
+                box-shadow: initial;
+                background: initial;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Alterar texto</h4>
+                </div>
+                <div class="modal-body">
+                    <textarea style="height: 400px;" class="form-control"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalChartDim" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Dimensionamento do sistema</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="row">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Janeiro</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jan" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Fevereiro</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="fev" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Março</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="mar" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Abril</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="abr" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Maio</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="mai" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Junho</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jun" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Julho</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="jul" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Agosto</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ago" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Setembro</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="set" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Outubro</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="out" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Novembro</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nov" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">Dezembro</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="dez" placeholder="">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save-chart-dim" class="btn btn-primary"
+                        data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalChartYear" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Análise Financeira</h4>
+                </div>
+                <div class="modal-body">
+
+                    <form class="row">
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">1</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">2</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">3</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">4</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">5</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">6</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">7</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">8</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">9</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">10</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">11</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">12</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">13</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">14</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">15</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">16</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">17</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">18</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">19</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">20</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">21</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">22</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">23</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">24</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-sm-2 control-label">25</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="save-chart-year" class="btn btn-primary"
+                        data-dismiss="modal">Guardar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="page" style="padding: 0;">
+        <img src="capa.jpg" width="100%" />
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <img src="./image1.png" width="100%" />
+            <h3>A A3F ENERGIA SOLAR</h3>
+            <div>
+                Somos uma empresa Brasileira, criada no Rio de Janeiro por amigos e
+                profissionais. Trabalhamos com os melhores fabricantes, com certificações
+                nacionais e internacionais.<br><br>
+                MÃO DE OBRA ESPECIALIZADA: Formada no Centro de Treinamento
+                BlueSun do Brasil, o mais bem equipado do Brasil.<br><br>
+                O mercado de energias renováveis está passando por momentos de
+                transformações tecnológicas, apresentando novas possibilidades de eficiência
+                energética, qualidade e flexibilidade. Com essas vantagens podemos proporcionar
+                ao nosso cliente o melhor produto e empenho de sempre estar no topo da tecnologia.<br><br>
+                A nossa missão tem como objetivo fazer chegar até você e/ou sua empresa
+                uma energia limpa e sustentável. Com uma tecnologia de ponta, oferecemos as
+                melhores soluções, buscando sempre satisfazer cada uma das suas necessidades.
+            </div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <h3>Energia Solar</h3>
+        <div>
+            O sistema fotovoltaico é uma forma de produção de energia limpa e
+            sustentável. Um excelente investimento que garante economia de até 95% na sua
+            conta de energia, proporcionando ao longo do tempo somente a cobrança da tarifa
+            mensal firmada pela concessionária. Tendo uma instalação rápida e simples, a
+            energia fotovoltaica, valoriza ainda mais seu imóvel em comparação com casas que
+            não geram a sua própria energia, além de contribuir com a diminuição de impactos
+            ambientais.
+        </div>
+        <div class="divider-blue"></div>
+        <div>Energia Solar é a forma de energia mais limpa, mais abundante e mais confiável.<br><b>Conheça algumas
+                vantagens:</b></div>
+
+        <div style="margin-top: 35pt;">
+            <img style="float: left; margin-top: -10pt; margin-right: 10pt;" src="./economia.jpg" width="100px"
+                height="100px" />
+            <p>
+                <b>Economia</b><br>
+                É possível estimar a diminuição de gastos. Normalmente, a energia
+                solar gera economia que varia entre 50% e 95%.
+            </p>
+        </div>
+
+        <div style="margin-top: 35pt;">
+            <img style="float: left; margin-top: -10pt; margin-right: 10pt;" src="./Sustentabilidade.svg" width="100px"
+                height="100px" />
+            <p>
+                <b>Sustentabilidade</b><br>
+                A Energia Solar possui origem de fonte inesgotável e não-poluente, promovendo à redução de gases
+                poluentes, como CO2.
+            </p>
+        </div>
+
+        <div style="margin-top: 35pt;">
+            <img style="float: left; margin-top: -10pt; margin-right: 10pt;" src="./logo.jpeg" width="100px"
+                height="100px" />
+            <p>
+                <b>Previsibilidade e Independência</b><br>
+                Funciona como uma compra antecipada de energia, permitindo
+                previsibilidade no custo, independente da variação dos preços
+                da energia elétrica.
+            </p>
+        </div>
+
+        <div style="margin-top: 35pt;">
+            <img style="float: left; margin-top: -10pt; margin-right: 10pt;" src="./repair.jpg" width="100px"
+                height="100px" />
+            <p>
+                <b>Manutenção Mínima</b><br>
+                Necessitam de poucas manutenções e sob condições normais
+                tem longa durabilidade, durante anos e até mesmo décadas.
+            </p>
+        </div>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <img src="./como_funciona.jpeg" width="100%" />
+            <h3>Veja como funciona a energia solar</h3>
+            <div>
+                <ul>
+                    <li>Os painéis solares são feitos com células fotovoltaicas (FV) que convertem a luz do sol em
+                        corrente contínua (CC) durante o dia. </li>
+                    <li>O inversor FV converte a corrente CC gerada pelos painéis solares em corrente alternada (CA).
+                    </li>
+                    <li>A corrente CA é enviada do inversor para o quadro de distribuição, alimentando assim,
+                        equipamentos e iluminação com energia solar.</li>
+                    <li>A concessionária fará a troca do medidor para um modelo com leitura <b>bidirecional</b>, que
+                        registra a <b>energia recebida da rede pública</b> e a <b>energia solar excedente injetada na
+                            rede</b>, gerando assim, <b>créditos na conta de luz</b></li>
+                    <li>Sua residência ou empresa continua conectada à rede pública. Você vai precisar dessa energia
+                        durante a noite e o custo será compensado pela energia solar excedente gerada durante o dia</li>
+                </ul>
+                <b>* CC - Corrente Contínua | CA- Corrente alternada</b>
+            </div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <h2>Dados do Cliente</h2>
+            <div>
+                <b>Cliente: </b><span class="edit">xxxxxxxxx</span><br>
+                <b>E-mail: </b><span class="edit">xxxxxxxxxxx</span><br>
+                <b>Telefone: </b><span class="edit">xxxxxxxxxxx</span><br>
+                <b>Endereço: </b><span class="edit">xxxxxxxxxxx</span><br>
+                <div class="divider-yellow"></div>
+                <b>Responsável: </b><span class="edit">xxxxxxxxxxx</span><br>
+                <b>E-mail: </b><span class="edit">xxxxxxxxxxx</span><br>
+                <b>Telefone: </b><span class="edit">xxxxxxxxxxx</span><br>
+                <div class="divider-blue"></div>
+                <h3>Dados do perfil energético</h3>
+                <table style="width: 100%">
+                    <tr>
+                        <td>Concessionária de Energia:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>ENEL RJ</b></td>
+                    </tr>
+                    <tr>
+                        <td>Consumo de energia médio mensal: <small>*últimos 12 meses</small></td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>1200 Kwh</b></td>
+                    </tr>
+                    <tr>
+                        <td>Valor unitário do Kilowatt x Hora:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>R$1,14</b></td>
+                    </tr>
+                    <tr>
+                        <td>Valor médio mensal da conta de energia: </td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>R$1.368,00</b></td>
+                    </tr>
+                    <tr>
+                        <td>Código do cliente:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>xxx</b></td>
+                    </tr>
+                </table>
+                <div style="text-align: right; margin-top: 20pt">
+                    <i><small>10 de setembro de 2019</small></i>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <div>
+                <h3>Dimensionamento do sistema </h3>
+                <table style="width: 100%">
+                    <tr>
+                        <td>Número total de Painéis fotovoltaicos:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>30 </b></td>
+                    </tr>
+                    <tr>
+                        <td>Potência de Cada Painel em STC*:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>330 KW</b></td>
+                    </tr>
+                    <tr>
+                        <td>Potência Total do Sistema Fotovoltaico: </td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>9.90 KWp</b></td>
+                    </tr>
+                    <tr>
+                        <td>Total de energia média gerada mensalmente: </td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>1225 Kwh</b></td>
+                    </tr>
+                    <tr>
+                        <td>Total de energia média gerada anualmente:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>14700 Kwh</b></td>
+                    </tr>
+                    <tr>
+                        <td>Inclinação ideal dos Painéis para esta localidade:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>20º</b></td>
+                    </tr>
+                    <tr>
+                        <td>Área mínima ocupado pelo sistema:</td>
+                        <td style="text-align: right; font-weight: bold;" class="edit"><b>61,00 m²</b></td>
+                    </tr>
+                </table>
+
+                <div style="margin: 20px 0;" id="chartCanvas"></div>
+
+                <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalChartDim">Editar
+                    Gráfico</button>
+
+                <div style="text-align: center; margin-top: 20pt">
+                    <i><small>* Dados estimados de geração para o primeiro ano, com base nas estações de medição do
+                            CRESESB (Centro de Referência para Energia Solar e Eólica Sérgio Brito), levando em
+                            consideração a orientação dos módulos referida acima. </small></i>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <div>
+                <h3>Especificação e orçamento </h3>
+
+
+                <table style="width: 100%">
+                    <tr>
+                        <td style="font-size: 16px; font-weight: bold;">Equipamentos</td>
+                        <td style="font-size: 16px; font-weight: bold; text-align: center">Quantidade</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="edit">Módulo Fotovoltaico</b><br>
+                            <span class="edit">Tipo: Policristalino | Potência: 330Wp ou equivalente técnico</span>
+                        </td>
+                        <td style="text-align: center"><b class="edit">30</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="edit">Inversor Fabricante:</b><br>
+                            <span class="edit">Kstar ou WEG ou Fronius | Potência: 8.00 kWp ou equivalente técnico</span>
+                        </td>
+                        <td style="text-align: center"><b class="edit">1</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Estruturas e Materiais Elétricos*</b><br>
+                            <span class="edit">Estrutura de fixação padrão para Telhados</span>
+                        </td>
+                        <td style="text-align: center"><b class="edit">Incluso</b></td>
+                    </tr>
+                    <tr>
+                        <td><b class="edit">Monitoramento wifi</b></td>
+                        <td style="text-align: center"><b class="edit">Incluso</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>String Box CC (Corrente contínua)</b><br>
+                            <span class="edit">Dispositivos de proteção em corrente continua</span><br>
+                            <small class="edit">*Considerando uma distância máxima de 30 metros do sistema ao Quadro Geral da
+                                unidade</small>
+                        </td>
+                        <td style="text-align: center"><b class="edit">Incluso</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>String Box CA (Corrente Alternada)</b><br>
+                            <span class="edit">Dispositivos de proteção em corrente alternada</span><br>
+                            <small class="edit">*Considerando uma distância máxima de 15 metros do sistema ao Quadro Geral da
+                                unidade</small>
+                        </td>
+                        <td style="text-align: center"><b class="edit">Incluso</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="edit">Projeto de Engenharia e Conexão à Rede da Distribuidora Local</b>
+                        </td>
+                        <td style="text-align: center"><b class="edit">Incluso</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="edit">Equipamento</b>
+                        </td>
+                        <td style="text-align: center"><b class="edit">R$26.785,28</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b class="edit">Projeto, Instalação e Homologação</b>
+                        </td>
+                        <td style="text-align: center"><b class="edit">R$13.392,64</b></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b style="font-size: 16px;" class="edit">INVESTIMENTO TOTAL </b>
+                        </td>
+                        <td style="font-size: 16px; text-align: center"><b class="edit">R$40.177,92</b></td>
+                    </tr>
+
+                </table>
+                <div style="text-align: center; margin-top: 10pt">
+                    <i><small>* Orçamento preliminar e sujeito a mudança após VISITA TÉCNICA que será realizada no
+                            imóvel onde será efetuada a instalação.</small></i>
+                </div>
+                <div style="background-color: brown; padding: 10px;  text-align: center; margin-top: 40pt;">
+                    <b style="color: #fff; font-size: 13px;">Cobrimos qualquer orçamento da concorrência, mediante
+                        apresentação da proposta.</b>
+                </div>
+            </div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <h2>Análise Financeira</h2>
+            <div>
+                <b>Valor da proposta: </b><span class="edit">R$ 40.177,92</span><br>
+                <b>Tempo de vida mínima: </b><span class="edit">25 anos</span><br>
+                <b>Inflação: </b><span class="edit">15 % ao ano</span><br>
+                <b>Perda de eficiência: </b><span class="edit">20 % em 25 anos</span><br>
+                <b>Preço atual kWh + impostos: </b><span class="edit">R$ 1,00</span><br>
+
+                <div style="margin: 20px 0;" id="chartCanvas2"></div>
+
+                <div>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalChartYear">Editar Gráfico</button>
+                </div>
+
+                <b>Caixa acumulado: </b><span class="edit">R$ 2.901.232,42</span><br>
+                <b>Valor presente líquido: </b><span class="edit">R$ 317.856,00</span><br>
+                <b>Taxa interna de retorno (TIR): </b><span class="edit">54%</span><br>
+                <b>Payback Simples: </b><span class="edit">2 anos e 3 meses</span>
+
+            </div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <h3>Validade da proposta</h3>
+            <div>
+                Este orçamento é válido por 10 dias, a contar da data da elaboração mencionada nesta proposta, após este
+                prazo, as condições da proposta estarão sujeitas à nossa confirmação formal.
+            </div>
+
+            <h3>Forma de pagamento dos equipamentos </h3>
+
+            <p>Boleto Bancário <b class="edit">1x de R$ 40.177,92 à vista</b></p>
+            <p>Financiamento em até <b class="edit">60x com a 1ª parcela para 60 dias</b></p>
+            <p>Taxa de juros base: <b class="edit">1,8% a.m (pode variar de acordo com o score do cliente)</b></p>
+
+            <table style="width: 100%">
+                <tr>
+                    <td style="text-align: center; font-weight: bold;" class="edit">Em 12 Parcelas</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">Em 24 Parcelas</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">Em 36 Parcelas</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">Em 48 Parcelas</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">Em 60 Parcelas</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-weight: bold;" class="edit">R$ 3.752,70</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">R$ 2.076,43</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">R$ 1.526,11</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">R$ 1.257,14</td>
+                    <td style="text-align: center; font-weight: bold;" class="edit">R$ 1.100,55</td>
+                </tr>
+            </table>
+
+            <div class="divider-yellow"></div>
+            <h3>Garantias</h3>
+            <div>
+                Módulo Fotovoltaico (12 anos – defeito de fabricação | 25 anos – contra
+                perda de eficiência)<br>
+                <ul>
+                    <li class="edit">Inversor (7 anos – defeito de fabricação)</li>
+                    <li class="edit">Estruturas de fixação (12 anos – defeito de fabricação)</li>
+                    <li class="edit">Proteções (12 anos – defeito de fabricação)</li>
+                    <li class="edit">Serviço de instalação (12 meses – defeito de instalação)</li>
+                </ul>
+            </div>
+
+            <h3>Prazos</h3>
+            <div class="edit">
+                O prazo total do projeto está estimado em média em 70 (setenta) dias,
+                podendo ocorrer em um prazo inferior de acordo com a demanda de
+                importação / estoque dos componentes importados.
+                Existem sub-atividades que são de interface com a concessionária de
+                energia para solicitação de acesso, aprovação de projeto, vistoria
+                técnica e substituição/adequação da medição, sendo seus prazos
+                regulados pela Aneel (Agência Nacional de Energia Elétrica).
+            </div>
+        </article>
+
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+
+        </footer>
+    </div>
+
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+            <h2>Escopo de fornecimento</h2>
+
+            <h3>Está proposta contempla:</h3>
+            <ul>
+                <li>Fornecimento dos equipamentos e acessórios para o sistema fotovoltaico;</li>
+                <li>Instalação do sistema fotovoltaico;</li>
+                <li>Recolhimento da ART para o projeto e instalação do sistema fotovoltaico;</li>
+                <li>Condução do processo de ligação do sistema fotovoltaico junto a concessionaria de energia;</li>
+                <li>1ª limpeza/manutenção no prazo de 365 dias.</li>
+            </ul>
+
+            <h3>Fora do escopo de fornecimento:</h3>
+            <ul>
+                <li>Custo para substituição do medidor bidirecional junto a concessionária para sistemas fotovoltaicos
+                    acima de 75Kwp;</li>
+                <li>Obras civis para adequação do padrão de entrada (se necessário);</li>
+                <li>Adaptação na rede elétrica do local e da concessionária de distribuição de energia para sistemas
+                    acima de 75Kwp;</li>
+                <li>O cliente deve prover de ponte de energia em corrente alternada (CA) para a conexão do inversor;
+                </li>
+                <li>Quando apontado na visita técnica onde as condições do telhado apresentarem necessidade de
+                    substituição de telhas, estas deverão ser disponibilizadas pelo contratante/cliente;</li>
+                <li>Disponibilizar local temporário para o armazenamento dos equipamentos e materiais da obra</li>
+            </ul>
+
+            <img src="./escopo.jpg" width="100%" style="width: 65%; margin: auto; display: block;">
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <div class="logo">
+                <img src="./logo.jpeg" />
+                <span>SUA SOLUÇÃO EM SUSTENTABILIDADE</span>
+            </div>
+            <div><b>Proposta </b>| Energia Solar – Geração distribuída</div>
+        </header>
+        <article>
+
+            <h3 style="line-height: 1.7em; margin-bottom: 2em;">
+                E, por assim estarem justos e contratados, as partes assinam o presente documento.
+            </h3>
+            <b>ARARUAMA, 10/09/2019. </b>
+            <div style="margin-top: 5em;" class="divider-blue"></div>
+            <b>CLIENTE</b>
+            <div class="divider-blue" style="margin-top: 5em;"></div>
+            <b>A3F ENERGIA SOLAR LTDA </b>
+
+            <img height="100px" style="display: block; margin: 50px auto 0;" src="./logo.jpeg" />
+
+            <h4 style="text-align: center; margin-top: 50px;">SIGA-NOS TAMBÉM NAS NOSSAS REDES SOCIAIS</h4>
+            <div style="text-align: center; margin: 10px 0;"><img src="instagram.jpg"
+                    style="width: 50px; vertical-align: middle;">instagram.com/<b>a3fenergiasolar</b></div>
+            <div style="text-align: center; margin: 10px 0;"><img src="facebook.jpg"
+                    style="width: 60px; vertical-align: middle;">facebook.com/<b>A3FEnergiaSolar</b></div>
+            <div style="text-align: center; margin: 10px 0;"><b>www.a3fsolar.com.br</b></div>
+        </article>
+        <footer>
+            <div class="left">
+                A3F Energia Solar LTDA<br>
+                CNPJ: 33.793.870/0001-14
+            </div>
+            <div class="right text-right">
+                Rod. Amaral Peixoto, 83363 Ponte dos Leites, Araruama-RJ<br>
+                (21) 3153-2309 – (21) 97551-5538 - (22) 99759-7332<br>
+                contato@a3fsolar.com.br
+            </div>
+        </footer>
+    </div>
+
+    <script>
+
+
+        var color = Chart.helpers.color;
+
+
+
+        $('.edit').click(function () {
+            $('.edit.active').removeClass('active');
+            $(this).addClass('active');
+            $('#myModal textarea').val($(this).text());
+            $('#myModal').modal('show');
+        });
+
+        $('#save').click(function () {
+            $('.edit.active').text($('#myModal textarea').val());
+        });
+
+        $('#save-chart-year').click(function () {
+
+            document.getElementById("chartCanvas2").innerHTML = '&nbsp;';
+            document.getElementById("chartCanvas2").innerHTML = '<canvas id="canvas2" width="700" height="400"></canvas>';
+
+            data = [];
+            labels = [];
+
+            x = 0;
+            $.each($('#modalChartYear input'), function (i, v) {
+                if ($(this).val() != '') {
+                    data[x] = $(this).val();
+                    labels[x] = x;
+                    x++;
+                }
+            });
+
+            console.log(data);
+            console.log(labels);
+
+            var config = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Caixa Acumulado',
+                        backgroundColor: '#004b6a',
+                        borderColor: '#004b6a',
+                        data: data,
+                        fill: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    title: {
+                        display: false,
+                        text: ' '
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        display: false,
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Anos'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: false,
+                                labelString: 'Value'
+                            }
+                        }]
+                    }
+                }
+            };
+
+            var ctx = document.getElementById('canvas2').getContext('2d');
+            window.myLine = new Chart(ctx, config);
+        });
+
+        $('#save-chart-dim').click(function () {
+
+            document.getElementById("chartCanvas").innerHTML = '&nbsp;';
+            document.getElementById("chartCanvas").innerHTML = '<canvas id="canvas" width="700" height="400"></canvas>';
+
+            var barChartData = {
+                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                datasets: [{
+                    label: 'Geração Mensal (KWh)',
+                    backgroundColor: color('#fe6b09').alpha(0.5).rgbString(),
+                    borderColor: '#fe6b09',
+                    borderWidth: 1,
+                    data: [
+                        $('#jan').val(),
+                        $('#fev').val(),
+                        $('#mar').val(),
+                        $('#abr').val(),
+                        $('#mai').val(),
+                        $('#jun').val(),
+                        $('#jul').val(),
+                        $('#ago').val(),
+                        $('#set').val(),
+                        $('#out').val(),
+                        $('#nov').val(),
+                        $('#dez').val(),
+                    ]
+                }]
+
+            };
+
+            var ctx = document.getElementById('canvas').getContext('2d');
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: false,
+                        text: 'Chart.js Line Chart'
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        display: false,
+                        intersect: false,
+                    },
+                }
+            });
+        });
+    </script>
+
+
+</body>
+
+</html>
