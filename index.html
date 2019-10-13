@@ -597,7 +597,8 @@
         </div>
 
         <div style="margin-top: 35pt;">
-            <img style="float: left; margin-top: -10pt; margin-right: 10pt;" src="./sustentabilidade.svg" width="100px" height="100px" />
+            <img style="float: left; margin-top: -10pt; margin-right: 10pt;" src="./sustentabilidade.svg" width="100px"
+                height="100px" />
             <p>
                 <b>Sustentabilidade</b><br>
                 A Energia Solar possui origem de fonte inesgotável e não-poluente, promovendo à redução de gases
@@ -839,7 +840,8 @@
                     <tr>
                         <td>
                             <b class="edit">Inversor Fabricante:</b><br>
-                            <span class="edit">Kstar ou WEG ou Fronius | Potência: 8.00 kWp ou equivalente técnico</span>
+                            <span class="edit">Kstar ou WEG ou Fronius | Potência: 8.00 kWp ou equivalente
+                                técnico</span>
                         </td>
                         <td style="text-align: center"><b class="edit">1</b></td>
                     </tr>
@@ -858,7 +860,8 @@
                         <td>
                             <b>String Box CC (Corrente contínua)</b><br>
                             <span class="edit">Dispositivos de proteção em corrente continua</span><br>
-                            <small class="edit">*Considerando uma distância máxima de 30 metros do sistema ao Quadro Geral da
+                            <small class="edit">*Considerando uma distância máxima de 30 metros do sistema ao Quadro
+                                Geral da
                                 unidade</small>
                         </td>
                         <td style="text-align: center"><b class="edit">Incluso</b></td>
@@ -867,7 +870,8 @@
                         <td>
                             <b>String Box CA (Corrente Alternada)</b><br>
                             <span class="edit">Dispositivos de proteção em corrente alternada</span><br>
-                            <small class="edit">*Considerando uma distância máxima de 15 metros do sistema ao Quadro Geral da
+                            <small class="edit">*Considerando uma distância máxima de 15 metros do sistema ao Quadro
+                                Geral da
                                 unidade</small>
                         </td>
                         <td style="text-align: center"><b class="edit">Incluso</b></td>
@@ -942,7 +946,8 @@
                 <div style="margin: 20px 0;" id="chartCanvas2"></div>
 
                 <div>
-                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalChartYear">Editar Gráfico</button>
+                    <button class="btn btn-info btn-xs" data-toggle="modal" data-target="#modalChartYear">Editar
+                        Gráfico</button>
                 </div>
 
                 <b>Caixa acumulado: </b><span class="edit">R$ 2.901.232,42</span><br>
@@ -1018,13 +1023,11 @@
 
             <h3>Prazos</h3>
             <div class="edit">
-                O prazo total do projeto está estimado em média em 70 (setenta) dias,
-                podendo ocorrer em um prazo inferior de acordo com a demanda de
-                importação / estoque dos componentes importados.
-                Existem sub-atividades que são de interface com a concessionária de
-                energia para solicitação de acesso, aprovação de projeto, vistoria
-                técnica e substituição/adequação da medição, sendo seus prazos
-                regulados pela Aneel (Agência Nacional de Energia Elétrica).
+                O prazo total do projeto está estimado em média em 70 (setenta) dias, podendo ocorrer em um prazo
+                inferior de acordo com a demanda de importação / estoque dos componentes importados. Existem
+                sub-atividades que são de interface com a concessionária de energia para solicitação de acesso,
+                aprovação de projeto, vistoria técnica e substituição/adequação da medição, sendo seus prazos regulados
+                pela Aneel (Agência Nacional de Energia Elétrica).
             </div>
         </article>
 
@@ -1143,12 +1146,12 @@
         $('.edit').click(function () {
             $('.edit.active').removeClass('active');
             $(this).addClass('active');
-            $('#myModal textarea').val($(this).text());
+            $('#myModal textarea').val($(this).text().trim());
             $('#myModal').modal('show');
         });
 
         $('#save').click(function () {
-            $('.edit.active').text($('#myModal textarea').val());
+            $('.edit.active').text($('#myModal textarea').val().trim());
         });
 
         $('#save-chart-year').click(function () {
@@ -1167,9 +1170,6 @@
                     x++;
                 }
             });
-
-            console.log(data);
-            console.log(labels);
 
             var config = {
                 type: 'line',
