@@ -1207,7 +1207,7 @@
                             display: true,
                             scaleLabel: {
                                 display: false,
-                                labelString: 'Value'
+                                labelString: 'Value',
                             }
                         }]
                     }
@@ -1266,6 +1266,15 @@
                         display: false,
                         intersect: false,
                     },
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                min: 0,
+                                stepSize: 60
+                            }
+                        }]
+                    }
                 }
             });
         });
