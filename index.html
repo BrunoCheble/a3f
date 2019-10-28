@@ -1190,6 +1190,7 @@
                         mode: 'index',
                         display: false,
                         intersect: false,
+
                     },
                     hover: {
                         mode: 'nearest',
@@ -1208,6 +1209,11 @@
                             scaleLabel: {
                                 display: false,
                                 labelString: 'Value',
+                            },
+                            ticks: {
+                                callback: function (value, index, values) {
+                                    return parseFloat(value).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+                                }
                             }
                         }]
                     }
@@ -1222,28 +1228,35 @@
 
             document.getElementById("chartCanvas").innerHTML = '&nbsp;';
             document.getElementById("chartCanvas").innerHTML = '<canvas id="canvas" width="700" height="400"></canvas>';
+            var data = [
+                $('#jan').val(),
+                $('#fev').val(),
+                $('#mar').val(),
+                $('#abr').val(),
+                $('#mai').val(),
+                $('#jun').val(),
+                $('#jul').val(),
+                $('#ago').val(),
+                $('#set').val(),
+                $('#out').val(),
+                $('#nov').val(),
+                $('#dez').val(),
+            ];
+
+            var labels = [['Janeiro'], ['Fevereiro'], ['Março'], ['Abril'], ['Maio'], ['Junho'], ['Julho'], ['Agosto'], ['Setembro'], ['Outubro'], ['Novembro'], ['Dezembro']];
+
+            $.each(data, function (index, value) {
+                labels[index][1] = value != '' ? parseFloat(value).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) : '';
+            });
 
             var barChartData = {
-                labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+                labels: labels,
                 datasets: [{
                     label: 'Geração Mensal (KWh)',
                     backgroundColor: color('#fe6b09').alpha(0.5).rgbString(),
                     borderColor: '#fe6b09',
                     borderWidth: 1,
-                    data: [
-                        $('#jan').val(),
-                        $('#fev').val(),
-                        $('#mar').val(),
-                        $('#abr').val(),
-                        $('#mai').val(),
-                        $('#jun').val(),
-                        $('#jul').val(),
-                        $('#ago').val(),
-                        $('#set').val(),
-                        $('#out').val(),
-                        $('#nov').val(),
-                        $('#dez').val(),
-                    ]
+                    data: data
                 }]
 
             };
@@ -1271,7 +1284,15 @@
                             display: true,
                             ticks: {
                                 min: 0,
-                                stepSize: 60
+                            }
+                        }],
+                        xAxes: [{
+                            ticks: {
+                                stepSize: 0,
+                                min: 0,
+                                autoSkip: false,
+                                fontSize: 11,
+                                padding: 12,
                             }
                         }]
                     }
